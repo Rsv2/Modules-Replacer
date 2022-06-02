@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Modules_Replacer.ModuleListUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Modules_Replacer"
+             mc:Ignorable="d" Height="470" Width="545" Background="{DynamicResource winColor}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ModulesList"
+                 Height="380"
+                 Margin="0,30,0,0"
+                 VerticalAlignment="Top"
+                 Grid.RowSpan="2" 
+                 HorizontalAlignment="Center" 
+                 Width="545"
+                 ItemsSource="{Binding ModList}"
+                 SelectedItem="{Binding Selected}"
+                 Background="{DynamicResource fieldColor}" BorderBrush="White"/>
+        <Button Content="Загрузить"
+                ToolTip="Загрузить чертёж станции"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="85"
+                Command="{Binding LoadFile}" BorderBrush="White"/>
+        <Button Content="Сохранить"
+                ToolTip="Сохранить текущий чертёж станции"
+                HorizontalAlignment="Left"
+                Margin="85,0,0,0" 
+                VerticalAlignment="Top"
+                Width="95"
+                Command="{Binding SaveFile}" BorderBrush="White"/>
+        <Button Content="Сохранить как"
+                ToolTip="Сохранить чертёж станции как"
+                HorizontalAlignment="Left"
+                Margin="181,0,0,0" 
+                VerticalAlignment="Top"
+                Width="124" Command="{Binding SaveAsFile}" BorderBrush="White"/>
+        <Button Content="Удалить отмеченное"
+                ToolTip="Удалить все отмеченные модули"
+                HorizontalAlignment="Left"
+                Margin="0,190,0,0" 
+                VerticalAlignment="Top"
+                Width="180" 
+                Command="{Binding RemoveSelected}"
+                Grid.Row="1" BorderBrush="White"/>
+        <TextBox HorizontalAlignment="Left"
+                 ToolTip="Текст шаблона (чувствительно к регистру)"
+                 Margin="305,0,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Element}"
+                 VerticalAlignment="Top"
+                 FontFamily="Segoe UI"
+                 FontSize="18"
+                 Width="205"
+                 Height="30"
+                 BorderBrush="{DynamicResource textColor}"/>
+        <Button Content="Вкл все"
+                ToolTip="Включить все модули по типу из комбобокса"
+                HorizontalAlignment="Left"
+                Margin="180,190,0,0" 
+                VerticalAlignment="Top"
+                Width="70"
+                Command="{Binding SelectStructs}"
+                Grid.Row="1" BorderBrush="White"/>
+        <Button Content="Выкл все"
+                ToolTip="Выключить все модули по типу из комбобокса"
+                HorizontalAlignment="Left"
+                Margin="250,190,0,0" 
+                VerticalAlignment="Top"
+                Width="80"
+                Command="{Binding UnSelectStructs}"
+                Grid.Row="1" BorderBrush="White"/>
+        <ComboBox HorizontalAlignment="Left"
+                  ToolTip="Выбор типов модулей для выделения"
+                  Margin="331,190,0,0"
+                  VerticalAlignment="Top" 
+                  Width="214" 
+                  SelectedIndex="{Binding Types, UpdateSourceTrigger=PropertyChanged}"
+                  Grid.Row="1" BorderBrush="White">
+            <ComboBoxItem Content="Строительные модули"/>
+            <ComboBoxItem Content="Грузовые модули"/>
+            <ComboBoxItem Content="Жилые модули"/>
+            <ComboBoxItem Content="Посадочные площадки"/>
+            <ComboBoxItem Content="Доки"/>
+            <ComboBoxItem Content="Защитные модули"/>
+            <ComboBoxItem Content="Прочие модули"/>
+            <ComboBoxItem Content="Производственные модули"/>
+            <ComboBoxItem Content="По шаблону"/>
+        </ComboBox>
+        <TextBlock Margin="510,0,0,0"
+                   ToolTip="Выделенные модули"
+                   TextWrapping="Wrap" 
+                   Text="{Binding Coll}"
+                   FontFamily="Segoe UI"
+                   FontSize="18"
+                   VerticalAlignment="Top"
+                   Height="30"
+                   HorizontalAlignment="Left" 
+                   Width="35"
+                   Foreground="{DynamicResource textColor}"
+                   TextAlignment="Center"/>
+        <Button Content="Последовательное наращивание производства"
+                ToolTip="Последовательное наращивание производство"
+                HorizontalAlignment="Center"
+                Width="544"
+                Command="{Binding SortStepByStep}"
+                Grid.Row="1" BorderBrush="White" Margin="0,220,0,0"/>
+    </Grid>
+</UserControl>
